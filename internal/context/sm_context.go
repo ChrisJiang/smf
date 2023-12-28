@@ -452,6 +452,7 @@ func (smContext *SMContext) PCFSelection() error {
 		if service.ServiceName == models.ServiceName_NPCF_SMPOLICYCONTROL {
 			SmPolicyControlConf := Npcf_SMPolicyControl.NewConfiguration()
 			SmPolicyControlConf.SetBasePath(service.ApiPrefix)
+			SmPolicyControlConf.SetUserAgent("SMF")
 			smContext.SMPolicyClient = Npcf_SMPolicyControl.NewAPIClient(SmPolicyControlConf)
 		}
 	}

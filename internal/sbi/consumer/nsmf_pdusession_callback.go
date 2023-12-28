@@ -17,6 +17,7 @@ func SendSMContextStatusNotification(uri string) (*models.ProblemDetails, error)
 			ResourceStatus: models.ResourceStatus_RELEASED,
 		}
 		configuration := Nsmf_PDUSession.NewConfiguration()
+		configuration.SetUserAgent("SMF")
 		client := Nsmf_PDUSession.NewAPIClient(configuration)
 
 		logger.CtxLog.Infoln("[SMF] Send SMContext Status Notification")

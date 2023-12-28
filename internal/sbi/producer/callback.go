@@ -63,6 +63,7 @@ func SendUpPathChgEventExposureNotification(
 	uri string, notification *models.NsmfEventExposureNotification,
 ) {
 	configuration := Nsmf_EventExposure.NewConfiguration()
+	configuration.SetUserAgent("SMF")
 	client := Nsmf_EventExposure.NewAPIClient(configuration)
 	_, httpResponse, err := client.
 		DefaultCallbackApi.

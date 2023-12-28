@@ -223,10 +223,12 @@ func InitSmfContext(config *factory.Config) {
 	// Set client and set url
 	ManagementConfig := Nnrf_NFManagement.NewConfiguration()
 	ManagementConfig.SetBasePath(GetSelf().NrfUri)
+	ManagementConfig.SetUserAgent("SMF")
 	smfContext.NFManagementClient = Nnrf_NFManagement.NewAPIClient(ManagementConfig)
 
 	NFDiscovryConfig := Nnrf_NFDiscovery.NewConfiguration()
 	NFDiscovryConfig.SetBasePath(GetSelf().NrfUri)
+	NFDiscovryConfig.SetUserAgent("SMF")
 	smfContext.NFDiscoveryClient = Nnrf_NFDiscovery.NewAPIClient(NFDiscovryConfig)
 
 	smfContext.ULCLSupport = configuration.ULCL

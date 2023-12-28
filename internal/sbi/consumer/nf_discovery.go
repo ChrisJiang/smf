@@ -35,6 +35,7 @@ func SendNFDiscoveryUDM() (*models.ProblemDetails, error) {
 			if service.ServiceName == models.ServiceName_NUDM_SDM {
 				SDMConf := Nudm_SubscriberDataManagement.NewConfiguration()
 				SDMConf.SetBasePath(service.ApiPrefix)
+				SDMConf.SetUserAgent("SMF")
 				smf_context.GetSelf().SubscriberDataManagementClient = Nudm_SubscriberDataManagement.NewAPIClient(SDMConf)
 			}
 		}
