@@ -223,10 +223,10 @@ func CreateNfSubscription(subscrCond interface{}) (models.NrfSubscriptionData, e
             break
         } else {
             logger.ConsumerLog.Infof("handler returned wrong status code %d", status)
-            // fmt.Errorf("NRF return wrong status code %d", status)
+            err = fmt.Errorf("NRF return wrong status code %d", status)
         }
     }
 
     logger.InitLog.Infof("SMF subscription creation to NRF %v", subRet)
-    return subRet, nil
+    return subRet, err
 }
