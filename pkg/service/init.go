@@ -104,14 +104,21 @@ func (a *SmfApp) Start(tlsKeyLogPath string) {
 	logger.InitLog.Infoln("Server started")
 	router := logger_util.NewGinWithLogrus(logger.GinLog)
 
-	err := consumer.SendNFRegistration()
+	pf, err := consumer.SendNFRegistration()
 	if err != nil {
-		retry_err := consumer.RetrySendNFRegistration(10)
-		if retry_err != nil {
-			logger.InitLog.Errorln(retry_err)
+		pf, err = consumer.RetrySendNFRegistration(10)
+		if err != nil {
+			logger.InitLog.Errorln(err)
 			return
 		}
 	}
+
+	// TODO: CreateSubscription
+	CreateNfSubscription(models.NfType_SEPP)
+	CreateNfSubscription(models.ServiceName_NUDM_UECM)
+	CreateNfSubscription(models.ServiceName_NUDM_SDM)
+	CreateNfSubscription(models.ServiceName_NAMF_COMM)
+	CreateNfSubscription(models.ServiceName_NPCF_SMPOLICYCONTROL)
 
 	signalChannel := make(chan os.Signal, 1)
 	signal.Notify(signalChannel, os.Interrupt, syscall.SIGTERM)
