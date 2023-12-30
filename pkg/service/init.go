@@ -104,9 +104,9 @@ func (a *SmfApp) Start(tlsKeyLogPath string) {
 	logger.InitLog.Infoln("Server started")
 	router := logger_util.NewGinWithLogrus(logger.GinLog)
 
-	pf, err := consumer.SendNFRegistration()
+	_, err := consumer.SendNFRegistration()
 	if err != nil {
-		pf, err = consumer.RetrySendNFRegistration(10)
+		_, err = consumer.RetrySendNFRegistration(10)
 		if err != nil {
 			logger.InitLog.Errorln(err)
 			return
