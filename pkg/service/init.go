@@ -115,17 +115,22 @@ func (a *SmfApp) Start(tlsKeyLogPath string) {
 	}
 
 	// CreateSubscription
-	
-	var subscrCond = models.NfTypeCond{
+	var subscrCondInterface interface{}
+
+	var subscrCondSepp = models.NfTypeCond{
 		NfType: models.NfType_SEPP,
 	}
-
-	var subscrCondInterface interface{}
-	tmp, _ := json.Marshal(subscrCond)
-	json.Unmarshal(tmp, &subscrCondInterface)
-
+	tmpSepp, _ := json.Marshal(subscrCondSepp)
+	json.Unmarshal(tmpSepp, &subscrCondInterface)
 	consumer.CreateNfSubscription(subscrCondInterface)
-	//consumer.CreateNfSubscription("namf-comm")
+	
+	var subscrCondNamf = models.ServiceNameCond{
+		ServiceName: models.ServiceName_NAMF_COMM,
+	}
+	tmpNamf, _ := json.Marshal(subscrCondNamf)
+	json.Unmarshal(tmpNamf, &subscrCondInterface)
+	consumer.CreateNfSubscription(subscrCondInterface)
+	
 	//consumer.CreateNfSubscription("nudm-uecm")
 	//consumer.CreateNfSubscription("nudm-sdm")
 	//consumer.CreateNfSubscription("npcf-smpolicycontrol")
