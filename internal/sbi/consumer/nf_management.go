@@ -181,7 +181,7 @@ func CreateNfSubscription(subscrCond string) (models.NrfSubscriptionData, error)
                                         smf_context.GetSelf().RegisterIPv4,
                                         smf_context.GetSelf().SBIPort),
         SubscrCond:               subscrCond,
-        PlmnId:                   plmnList[0],
+        PlmnId:                   &plmnList[0],
         ReqNfType:                models.NfType_SMF,
         //SubscriptionId
         //ValidityTime
@@ -219,6 +219,7 @@ func CreateNfSubscription(subscrCond string) (models.NrfSubscriptionData, error)
             // CreateSubscription
             resourceUri := res.Header.Get("Location")
             subscriptionId := resourceUri[strings.LastIndex(resourceUri, "/")+1:]
+			logger.InitLog.Infof("SMF subscription id %s for subscrCond %s", subscriptionId, subscrCond)
             break
         } else {
             logger.ConsumerLog.Infof("handler returned wrong status code %d", status)
