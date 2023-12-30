@@ -114,11 +114,11 @@ func (a *SmfApp) Start(tlsKeyLogPath string) {
 	}
 
 	// TODO: CreateSubscription
-	consumer.CreateNfSubscription(models.NfType_SEPP)
-	consumer.CreateNfSubscription(models.ServiceName_NUDM_UECM)
-	consumer.CreateNfSubscription(models.ServiceName_NUDM_SDM)
-	consumer.CreateNfSubscription(models.ServiceName_NAMF_COMM)
-	consumer.CreateNfSubscription(models.ServiceName_NPCF_SMPOLICYCONTROL)
+	consumer.CreateNfSubscription("SEPP")
+	consumer.CreateNfSubscription("nudm-uecm")
+	consumer.CreateNfSubscription("nudm-sdm")
+	consumer.CreateNfSubscription("namf-comm")
+	consumer.CreateNfSubscription("npcf-smpolicycontrol")
 
 	signalChannel := make(chan os.Signal, 1)
 	signal.Notify(signalChannel, os.Interrupt, syscall.SIGTERM)

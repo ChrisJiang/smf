@@ -168,9 +168,9 @@ func SendDeregisterNFInstance() (*models.ProblemDetails, error) {
         return nil, openapi.ReportError("server no response")
     }
 }
-type StringType string
+
 // CreateSubscription
-func CreateNfSubscription(subscrCond StringType) (models.NrfSubscriptionData, error) {
+func CreateNfSubscription(subscrCond string) (models.NrfSubscriptionData, error) {
     smfProfile := smf_context.NFProfile
 	plmnList := *smfProfile.PLMNList
 
