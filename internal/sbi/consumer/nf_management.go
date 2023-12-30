@@ -170,7 +170,7 @@ func SendDeregisterNFInstance() (*models.ProblemDetails, error) {
 }
 
 // CreateSubscription
-func CreateNfSubscription(subscrCond interface) (models.NrfSubscriptionData, error) {
+func CreateNfSubscription(subscrCond interface{}) (models.NrfSubscriptionData, error) {
     smfProfile := smf_context.NFProfile
 	plmnList := *smfProfile.PLMNList
 
