@@ -172,6 +172,7 @@ func SendDeregisterNFInstance() (*models.ProblemDetails, error) {
 // CreateSubscription
 func CreateNfSubscription(subscrCond string) (models.NrfSubscriptionData, error) {
     smfProfile := smf_context.NFProfile
+	plmnList := *smfProfile.PLMNList
 
     // set NrfSubscriptionData
     sub := models.NrfSubscriptionData{
@@ -180,7 +181,7 @@ func CreateNfSubscription(subscrCond string) (models.NrfSubscriptionData, error)
                                         smf_context.GetSelf().RegisterIPv4,
                                         smf_context.GetSelf().SBIPort),
         SubscrCond:               subscrCond,
-        PlmnId:                   smfProfile.PLMNList[0],
+        PlmnId:                   plmnList[0],
         ReqNfType:                models.NfType_SMF,
         //SubscriptionId
         //ValidityTime
