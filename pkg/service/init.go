@@ -114,10 +114,10 @@ func (a *SmfApp) Start(tlsKeyLogPath string) {
 	}
 
 	// TODO: CreateSubscription
-	consumer.CreateNfSubscription("SEPP")
+	//consumer.CreateNfSubscription("SEPP")
+	consumer.CreateNfSubscription("namf-comm")
 	consumer.CreateNfSubscription("nudm-uecm")
 	consumer.CreateNfSubscription("nudm-sdm")
-	consumer.CreateNfSubscription("namf-comm")
 	consumer.CreateNfSubscription("npcf-smpolicycontrol")
 
 	signalChannel := make(chan os.Signal, 1)
