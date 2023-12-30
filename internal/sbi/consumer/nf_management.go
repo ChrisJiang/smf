@@ -178,10 +178,9 @@ func CreateNfSubscription(subscrCond string) (models.NrfSubscriptionData, error)
         NfStatusNotificationUri:  fmt.Sprintf("%s://%s:%d/nnrf-nfm/v1/nf-status-notify",
                                         smf_context.GetSelf().URIScheme,
                                         smf_context.GetSelf().RegisterIPv4,
-                                        smf_context.GetSelf().SBIPort
-                                    ),
+                                        smf_context.GetSelf().SBIPort),
         SubscrCond:               subscrCond,
-        PlmnId:                   smfProfile.PLMNList[0]
+        PlmnId:                   smfProfile.PLMNList[0],
         ReqNfType:                models.NfType_SMF,
         //SubscriptionId
         //ValidityTime
